@@ -18,6 +18,31 @@ Router.post("/add", (req, res) => {
             res.status(400).json("Error : " + err);
         });
 });
-
-
+Router.get("/:id", (req, res) => {
+    Exercise.findById(
+        req.params.id
+            .then(exercise => res.json(exercise))
+            .catch(err => {
+                res.status(400).json("Error :", err);
+            })
+    );
+});
+Router.delete("/:id", (req, res) => {
+    Exercise.findByIdAndDelete(
+        req.params.id
+            .then(() => res.json("exercise delete"))
+            .catch(err => {
+                res.status(400).json("Error :", err);
+            })
+    );
+});
+Router.post("/update/:id", (req, res) => {
+    Exercise.findById(
+        req.params.id
+            .then(exercise => res.json(exercise))
+            .catch(err => {
+                res.status(400).json("Error :", err);
+            })
+    );
+});
 module.exports = Router;
